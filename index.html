@@ -1,92 +1,176 @@
 <!DOCTYPE html>
 <html ng-app="dataApp" ng-controller="dataCtrl">
 <head>
-<meta charset="UTF-8">
-<title>thank you for seeing this demo</title>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" media="screen" title="no title" charset="utf-8">
-<script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
-<script src="bower_components/angular/angular.js" charset="utf-8"></script>
-<script src="bower_components/Chart.js/Chart.js" charset="utf-8"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
-<script src="bower_components/angular-chart.js/angular-chart.js" charset="utf-8"></script>
+  <meta charset="UTF-8">
+  <title>Thank you for seeing this demo !</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="bower_components/sidebar/simple-sidebar.css" media="screen" title="no title" charset="utf-8">
+  <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script src="bower_components/Chart.js/Chart.js" charset="utf-8"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
+  <script src="bower_components/angular-chart.js/angular-chart.js" charset="utf-8"></script>
 </head>
-
 <body>
-Speed zones:
-<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="moments"
-chart-series="labels" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+  <nav class="navbar navbar-inverse  navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">
+          <svg width="173px" height="24px" viewBox="0 0 173 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+            <title>547CFFCA-D093-42E9-AE4E-A0D7C2B9DABB</title>
+            <desc>Created with sketchtool.</desc>
+            <defs>
+              <rect x="48" y="20" width="169" height="20" id="rect-1"></rect>
+              <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+                <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+              </filter>
+            </defs>
+            <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Dashboard" transform="translate(-46.000000, -19.000000)">
+                <g id="R3L_Logo_Application_02">
+                  <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#rect-1"></use>
+                  <image x="48" y="20" width="169" height="20" xlink:href="data:image/png;base64,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"></image>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
 
-</canvas>
-Count by zones:
-<canvas id="bar" class="chart chart-bar"
-  chart-data="counts" chart-labels="labels" chart-series="labels" >
-</canvas>
-Speed average:
-<canvas id="doughnut" class="chart chart-doughnut"
-  chart-data="speeds" chart-labels="labels">
-</canvas>
-<script type="text/javascript">
+  <div id="wrapper">
+    <div id="sidebar-wrapper">
 
-var app = angular.module('dataApp', ["chart.js"]);
-app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
-  $scope.initialData = [
-   {"zoneId":"Calle 85", "data":{"count":1,"speed":10,"time":1466781876681}},
-   {"zoneId":"Salitre plaza", "data":{"count":2,"speed":8.5,"time":1466781876681}},
-   {"zoneId":"Parque 93", "data":{"count":4,"speed":15,"time":1466781876681}},
-   {"zoneId":"Calle 80", "data":{"count":3,"speed":13.5,"time":1466781876681}},
-   {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
-  ];
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+        </li>
+        <li class="sidebar-brand">
+          <a href="#">
+            NAVIGATE
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <svg width="18px" height="11px" viewBox="0 0 18 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+              <title>8B28611B-969C-4FDD-A343-ECF07F008629</title>
+              <desc>Created with sketchtool.</desc>
+              <defs></defs>
+              <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Dashboard" transform="translate(-25.000000, -133.000000)" fill="#5C9DF5">
+                  <g id="side-bar">
+                    <g id="analitycs" transform="translate(25.000000, 133.000000)">
+                      <path d="M1.27826087,8.84105015 C0.57826087,8.84105015 0,8.29559271 0,7.63466717 C0,6.97402888 0.57826087,6.42857143 1.27826087,6.42857143 C1.97826087,6.42857143 2.55652174,6.97402888 2.55652174,7.63466717 C2.55652174,8.29530547 1.97826087,8.84105015 1.27826087,8.84105015 L1.27826087,8.84105015 Z" id="Shape"></path>
+                      <path d="M9.27826087,10.1267644 C8.57826087,10.1267644 8,9.58130699 8,8.92038146 C8,8.25974316 8.57826087,7.71428571 9.27826087,7.71428571 C9.97826087,7.71428571 10.5565217,8.25974316 10.5565217,8.92038146 C10.5565217,9.58101976 9.97826087,10.1267644 9.27826087,10.1267644 L9.27826087,10.1267644 Z" id="Shape-Copy-2"></path>
+                      <path d="M16.6115942,2.41247872 C15.9115942,2.41247872 15.3333333,1.86702128 15.3333333,1.20609574 C15.3333333,0.545457447 15.9115942,0 16.6115942,0 C17.3115942,0 17.8898551,0.545457447 17.8898551,1.20609574 C17.8898551,1.86673404 17.3115942,2.41247872 16.6115942,2.41247872 L16.6115942,2.41247872 Z" id="Shape-Copy-3"></path>
+                      <path d="M4.56811594,5.36717325 C3.86811594,5.36717325 3.28985507,4.82142857 3.28985507,4.16079027 C3.28985507,3.50015198 3.86811594,2.95440729 4.56811594,2.95440729 C5.26811594,2.95440729 5.84637681,3.50015198 5.84637681,4.16079027 C5.84637681,4.82142857 5.26811594,5.36717325 4.56811594,5.36717325 L4.56811594,5.36717325 Z M4.56811594,3.47142857 C4.17246377,3.47142857 3.86811594,3.75866261 3.86811594,4.13206687 C3.86811594,4.50547112 4.17246377,4.79270517 4.56811594,4.79270517 C4.96376812,4.79270517 5.26811594,4.50547112 5.26811594,4.13206687 C5.26811594,3.75866261 4.96376812,3.47142857 4.56811594,3.47142857 L4.56811594,3.47142857 Z" id="Shape"></path>
+                      <path d="M13.2782609,6.26990881 C12.5782609,6.26990881 12,5.72416413 12,5.06352584 C12,4.40288754 12.5782609,3.85714286 13.2782609,3.85714286 C13.9782609,3.85714286 14.5565217,4.40288754 14.5565217,5.06352584 C14.5565217,5.72416413 14.0086957,6.26990881 13.2782609,6.26990881 L13.2782609,6.26990881 Z M13.2782609,4.40288754 C12.8826087,4.40288754 12.5782609,4.69012158 12.5782609,5.06352584 C12.5782609,5.43693009 12.8826087,5.72416413 13.2782609,5.72416413 C13.673913,5.72416413 13.9782609,5.43693009 13.9782609,5.06352584 C13.9782609,4.69012158 13.673913,4.40288754 13.2782609,4.40288754 L13.2782609,4.40288754 Z" id="Shape"></path>
+                      <path d="M1.88863254,7.20900935 C1.73645863,7.12283914 1.70602385,6.95049872 1.7973282,6.8356051 L3.80724638,4.85015198 C3.89855072,4.70653495 4.08115942,4.67781155 4.20289855,4.76398176 C4.35507246,4.85015198 4.38550725,5.0224924 4.2942029,5.13738602 L2.3147195,7.09411574 C2.25384994,7.18028595 2.16254559,7.23773276 2.04080646,7.23773276 C2.04080646,7.23773276 1.94950211,7.23773276 1.88863254,7.20900935 Z" id="Shape"></path>
+                      <path d="M8.47696934,8.50276192 L5.11594203,4.993769 C4.9942029,4.90759878 4.96376812,4.73525836 5.05507246,4.62036474 C5.14637681,4.50547112 5.32898551,4.47674772 5.45072464,4.56291793 L8.8120563,8.07191085 C8.93349108,8.15808107 8.96423021,8.33042149 8.87292586,8.44531511 C8.84249108,8.50276192 8.75118673,8.56020873 8.65988238,8.56020873 C8.59901282,8.56020873 8.53814325,8.53148532 8.47696934,8.50276192 Z" id="Shape"></path>
+                      <path d="M9.95164856,8.6626362 C9.79947464,8.6051894 9.70817029,8.46157237 9.76903986,8.31795535 L12.2968716,5.79439408 C12.3580455,5.6510643 12.5406542,5.59361749 12.6928281,5.62234089 C12.845002,5.6797877 12.9363064,5.82340472 12.8754368,5.96702174 L10.3479094,8.49058301 C10.2867355,8.60547663 10.1649964,8.69164684 10.0432573,8.69164684 C10.0125181,8.69164684 9.98238769,8.69164684 9.95164856,8.6626362 Z" id="Shape"></path>
+                      <path d="M13.9006741,4.54845302 C13.7485002,4.49100621 13.6571958,4.34738919 13.7180654,4.20377216 L15.79497,1.72620221 C15.8561439,1.58287242 16.0387526,1.52542561 16.1909265,1.55414902 C16.3431004,1.61159583 16.4344048,1.75521285 16.3735352,1.89882987 L14.296935,4.37639982 C14.235761,4.49129344 14.1140219,4.57746365 13.9922828,4.57746365 C13.9615437,4.57746365 13.9314132,4.57746365 13.9006741,4.54845302 Z" id="Shape-Copy"></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
 
-  $scope.labels = $scope.initialData.map(d => d.zoneId); //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  $scope.series = ['Count by zones'];
-  $scope.counts = [$scope.initialData.map(d => d.data.count)];
+            Analytics</a>
+          </li>
+          <li>
+            <a href="#">
+              <svg width="16px" height="11px" viewBox="0 0 16 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+                <title>DBF91B5A-4D20-4CE4-8A96-5B5461B90002</title>
+                <desc>Created with sketchtool.</desc>
+                <defs></defs>
+                <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Dashboard" transform="translate(-24.000000, -176.000000)" fill="#5C9DF5">
+                    <g id="side-bar">
+                      <g id="newspaper-o" transform="translate(24.000000, 176.000000)">
+                        <path d="M8,3 L5,3 L5,6 L8,6 L8,3 L8,3 Z M9,8 L9,9 L4,9 L4,8 L9,8 L9,8 Z M9,2 L9,7 L4,7 L4,2 L9,2 L9,2 Z M14,8 L14,9 L10,9 L10,8 L14,8 L14,8 Z M14,6 L14,7 L10,7 L10,6 L14,6 L14,6 Z M14,4 L14,5 L10,5 L10,4 L14,4 L14,4 Z M14,2 L14,3 L10,3 L10,2 L14,2 L14,2 Z M2,9.5 L2,2 L1,2 L1,9.5 C1,9.63541667 1.04947917,9.75260417 1.1484375,9.8515625 C1.24739583,9.95052083 1.36458333,10 1.5,10 C1.63541667,10 1.75260417,9.95052083 1.8515625,9.8515625 C1.95052083,9.75260417 2,9.63541667 2,9.5 L2,9.5 Z M15,9.5 L15,1 L3,1 L3,9.5 C3,9.671875 2.97135417,9.83854167 2.9140625,10 L14.5,10 C14.6354167,10 14.7526042,9.95052083 14.8515625,9.8515625 C14.9505208,9.75260417 15,9.63541667 15,9.5 L15,9.5 Z M16,0 L16,9.5 C16,9.91666667 15.8541667,10.2708333 15.5625,10.5625 C15.2708333,10.8541667 14.9166667,11 14.5,11 L1.5,11 C1.08333333,11 0.729166667,10.8541667 0.4375,10.5625 C0.145833333,10.2708333 0,9.91666667 0,9.5 L0,1 L2,1 L2,0 L16,0 L16,0 Z" id="Shape"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              News</a>
+            </li>
+            <li>
+              <a href="#">
+                <svg width="12px" height="15px" viewBox="0 0 12 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+                  <title>F94237B0-A94D-4AE9-9491-CD4270D9D8DB</title>
+                  <desc>Created with sketchtool.</desc>
+                  <defs></defs>
+                  <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Dashboard" transform="translate(-26.000000, -218.000000)" fill="#5C9DF5">
+                      <g id="side-bar">
+                        <g id="board-brief" transform="translate(26.000000, 218.000000)">
+                          <path d="M3.20014421,0.156249999 L0.126315789,0.15625 L0.126315789,3.40625 L0.126315789,14.84375 L11.8736842,14.84375 L11.8736842,0.15625 L4.76554295,0.15625 L3.41052632,0.15625 L3.20014421,0.156249999 Z M0.757894737,14.21875 L0.757894737,3.84375 L0.757894737,0.78125 L3.85263158,0.78125 L11.2421053,0.78125 L11.2421053,14.21875 L0.757894737,14.21875 Z" id="Shape"></path>
+                          <path d="M10.0105263,5.0625 L10.0105263,1.375 L6.91578947,1.375 L6.91578947,5.0625 L10.0105263,5.0625 L10.0105263,5.0625 Z M7.54736842,2 L9.37894737,2 L9.37894737,4.4375 L7.54736842,4.4375 L7.54736842,2 L7.54736842,2 Z M1.98947368,6.75 L10.0105263,6.75 L10.0105263,7.375 L1.98947368,7.375 L1.98947368,6.75 Z M1.89473684,8.4375 L9.91578947,8.4375 L9.91578947,9.0625 L1.89473684,9.0625 L1.89473684,8.4375 Z M1.89473684,10.125 L9.91578947,10.125 L9.91578947,10.75 L1.89473684,10.75 L1.89473684,10.125 Z M1.89473684,11.8125 L6.91578947,11.8125 L6.91578947,12.4375 L1.89473684,12.4375 L1.89473684,11.8125 Z M1.89473684,1.25 L5.90526316,1.25 L5.90526316,1.875 L1.89473684,1.875 L1.89473684,1.25 Z M1.89473684,2.5 L5.90526316,2.5 L5.90526316,3.125 L1.89473684,3.125 L1.89473684,2.5 Z" id="Combined-Shape"></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
 
-$scope.speeds = $scope.initialData.map(d => d.data.speed);
-
-$scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
-
-
-
-
-  $scope.data = [
-    [10, 20, 15, 16, 30],
-    [13, 18, 14, 17, 26],
-    [16, 17, 8, 26, 20],
-    [20, 12, 15, 22, 19],
-    [9, 15, 16, 18, 17],
-  ];
-
-  $scope.onClick = function (points, evt) {
-     console.log(points, evt);
-   };
-   $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-   $scope.options = {
-     /*
-     scales: {
-       yAxes: [
-         {
-           id: 'y-axis-1',
-           type: 'linear',
-           display: true,
-           position: 'left'
-         },
-         {
-           id: 'y-axis-2',
-           type: 'linear',
-           display: true,
-           position: 'right'
-         }
-       ]
-     }
-     */
-   };
-
-  // $interval(function() {
-  //    $scope.labels.push("2013");
-  //    $scope.data[0].push(4);
-  //  }, 3000);
-});
-</script>
-</body>
-</html>
+                Board brief</a>
+              </li>
+              <li>
+                <a href="#">
+                  <svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <!-- Generator: sketchtool 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+                    <title>F61DA7B0-9AF6-4D7A-A2D9-108536299E04</title>
+                    <desc>Created with sketchtool.</desc>
+                    <defs></defs>
+                    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Dashboard" transform="translate(-23.000000, -267.000000)" fill="#5C9DF5">
+                        <g id="side-bar">
+                          <g id="briefcase" transform="translate(23.000000, 267.000000)">
+                            <path d="M17.9649123,2.88843564 C17.9649123,2.43090594 17.5882807,2.05838119 17.1249825,2.05838119 L12.4243509,2.05838119 L12.4243509,0.833034653 C12.4243509,0.37550495 12.0477193,0.00298019802 11.5844211,0.00298019802 L6.38021053,0.00298019802 C5.91722807,0.00298019802 5.5405614,0.37550495 5.5405614,0.833034653 L5.5405614,2.05834653 L0.839649123,2.05834653 C0.376666667,2.05834653 0,2.43087129 0,2.88840099 L0,13.1680396 C0,13.6250495 0.376631579,13.9970198 0.839649123,13.9970198 L17.1250175,13.9970198 C17.5882807,13.9970198 17.9649474,13.6250495 17.9649474,13.1680396 L17.9649474,2.88843564 L17.9649123,2.88843564 Z M6.17926316,0.634851485 L11.785614,0.634851485 L11.785614,2.05834653 L6.17926316,2.05834653 L6.17926316,0.634851485 L6.17926316,0.634851485 Z M3.12224561,13.3662228 L0.638701754,13.3662228 L0.638701754,2.69025248 L3.12224561,2.69025248 L3.12224561,13.3662228 L3.12224561,13.3662228 Z M14.2034035,13.3662228 L3.76098246,13.3662228 L3.76098246,2.69025248 L14.2034035,2.69025248 L14.2034035,13.3662228 L14.2034035,13.3662228 Z M17.3262105,13.3662228 L14.8426667,13.3662228 L14.8426667,2.69025248 L17.3262105,2.69025248 L17.3262105,13.3662228 L17.3262105,13.3662228 Z" id="Shape"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  Briefcase</a>
+                </li>
+                <li>
+                  <a href="#menu-toggle"  id="menu-toggle">Close Menu</a>
+                </li>
+              </ul>
+            </div>
+            <div id="page-content-wrapper" style="padding-top:70px">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="well">
+                      <h3>Speed zones</h3>
+                      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="moments"
+                      chart-series="labels" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+                    </div>
+                  </canvas>
+                  <div class="well">
+                    <h3>Count by zones</h3>
+                    <canvas id="bar" class="chart chart-bar"
+                    chart-data="counts" chart-labels="labels" chart-series="labels" chart-options="options">
+                  </canvas>
+                </div>
+                <div class="well">
+                  <h3>Speed average</h3>
+                  <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="labels" chart-options="options">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="app.js" charset="utf-8"></script>
+      </body>
+      </html>
