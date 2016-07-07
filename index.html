@@ -13,22 +13,20 @@
 </head>
 
 <body>
+Speed zones:
+<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="moments"
+chart-series="labels" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
 
+</canvas>
 Count by zones:
 <canvas id="bar" class="chart chart-bar"
-  chart-data="data" chart-labels="labels" chart-series="series" >
+  chart-data="counts" chart-labels="labels" chart-series="labels" >
+</canvas>
+Speed average:
+<canvas id="doughnut" class="chart chart-doughnut"
+  chart-data="speeds" chart-labels="labels">
 </canvas>
 <script type="text/javascript">
-/*
-var initialData = [
- {"zoneId":"Calle 85", "data":{"count":1,"speed":10,"time":1466781876681}},
- {"zoneId":"Salitre plaza", "data":{"count":2,"speed":8.5,"time":1466781876681}},
- {"zoneId":"Parque 93", "data":{"count":4,"speed":15,"time":1466781876681}},
- {"zoneId":"Calle 80", "data":{"count":3,"speed":13.5,"time":1466781876681}},
- {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
-];
-*/
-
 
 var app = angular.module('dataApp', ["chart.js"]);
 app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
@@ -40,23 +38,54 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
   ];
 
-  $scope.labels = $scope.initialData.map(function (d) { return d.zoneId;}); //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  console.info("labels: "+$scope.labels);
-  $scope.series = ['Count'];
-  $scope.data = [$scope.initialData.map(function(d) {return d.data.count;})];
-  console.info("series: "+$scope.data);
+  $scope.labels = $scope.initialData.map(d => d.zoneId); //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  $scope.series = ['Count by zones'];
+  $scope.counts = [$scope.initialData.map(d => d.data.count)];
 
+$scope.speeds = $scope.initialData.map(d => d.data.speed);
 
-  // [
-  //   [65, 59, 80, 81, 56, 55, 40],
-  // ];
+$scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
 
 
 
-  $interval(function() {
-     $scope.labels.push("2013");
-     $scope.data[0].push(4);
-   }, 3000);
+
+  $scope.data = [
+    [10, 20, 15, 16, 30],
+    [13, 18, 14, 17, 26],
+    [16, 17, 8, 26, 20],
+    [20, 12, 15, 22, 19],
+    [9, 15, 16, 18, 17],
+  ];
+
+  $scope.onClick = function (points, evt) {
+     console.log(points, evt);
+   };
+   $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+   $scope.options = {
+     /*
+     scales: {
+       yAxes: [
+         {
+           id: 'y-axis-1',
+           type: 'linear',
+           display: true,
+           position: 'left'
+         },
+         {
+           id: 'y-axis-2',
+           type: 'linear',
+           display: true,
+           position: 'right'
+         }
+       ]
+     }
+     */
+   };
+
+  // $interval(function() {
+  //    $scope.labels.push("2013");
+  //    $scope.data[0].push(4);
+  //  }, 3000);
 });
 </script>
 </body>
