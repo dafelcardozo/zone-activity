@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="dataApp" ng-controller="dataCtrl">
+<head>
+<meta charset="UTF-8">
+<title>thank you for seeing this demo</title>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" media="screen" title="no title" charset="utf-8">
+<script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+<script src="bower_components/angular/angular.js" charset="utf-8"></script>
+<script src="bower_components/Chart.js/Chart.js" charset="utf-8"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
+<script src="bower_components/angular-chart.js/angular-chart.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+Count by zones:
+<canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels" chart-series="series" >
+</canvas>
+<script type="text/javascript">
+/*
+var initialData = [
+ {"zoneId":"Calle 85", "data":{"count":1,"speed":10,"time":1466781876681}},
+ {"zoneId":"Salitre plaza", "data":{"count":2,"speed":8.5,"time":1466781876681}},
+ {"zoneId":"Parque 93", "data":{"count":4,"speed":15,"time":1466781876681}},
+ {"zoneId":"Calle 80", "data":{"count":3,"speed":13.5,"time":1466781876681}},
+ {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
+];
+*/
+
+
+var app = angular.module('dataApp', ["chart.js"]);
+app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
+  $scope.initialData = [
+   {"zoneId":"Calle 85", "data":{"count":1,"speed":10,"time":1466781876681}},
+   {"zoneId":"Salitre plaza", "data":{"count":2,"speed":8.5,"time":1466781876681}},
+   {"zoneId":"Parque 93", "data":{"count":4,"speed":15,"time":1466781876681}},
+   {"zoneId":"Calle 80", "data":{"count":3,"speed":13.5,"time":1466781876681}},
+   {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
+  ];
+
+  $scope.labels = $scope.initialData.map(function (d) { return d.zoneId;}); //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  console.info("labels: "+$scope.labels);
+  $scope.series = ['Count'];
+  $scope.data = [$scope.initialData.map(function(d) {return d.data.count;})];
+  console.info("series: "+$scope.data);
+
+
+  // [
+  //   [65, 59, 80, 81, 56, 55, 40],
+  // ];
+
+
+
+  $interval(function() {
+     $scope.labels.push("2013");
+     $scope.data[0].push(4);
+   }, 3000);
+});
+</script>
+</body>
+</html>
