@@ -1,0 +1,28 @@
+{
+  "name": "zone-activity",
+  "version": "1.0.0",
+  "description": "My frontend developer test for Rock3rlabs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dafelcardozo/zone-activity.git"
+  },
+  "keywords": [
+    "Frontend",
+    "developer",
+    "test",
+    "Rock3labs"
+  ],
+  "author": "Felipe Cardozo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dafelcardozo/zone-activity/issues"
+  },
+  "homepage": "https://github.com/dafelcardozo/zone-activity#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
