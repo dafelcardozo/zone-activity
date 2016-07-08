@@ -72,9 +72,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    $scope.refreshLinear();
 
   $interval(function() {
-     $scope.labels.push("2013");
-     $scope.data[0].push(4);
-   }, 60000);
+    $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0);
+  }, 5000);
 
 
 });
