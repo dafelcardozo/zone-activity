@@ -16,7 +16,13 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.series = ['Count by zones'];
   $scope.counts = [$scope.initialData.map(d => d.data.count)];
   $scope.speeds = $scope.initialData.map(d => d.data.speed);
-  $scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
+  $scope.moments = [];
+  $scope.hour = 11;
+  for (var i=7; i>1; i--){
+    $scope.moments.push("-"+(i)+" mn");
+  }
+  $scope.moments.push("-1 mn ago");
+  $scope.moments.push("right now");
   $scope.zonesVisibility = {};
   $scope.expanded = null;
   $scope.colors = {
@@ -26,7 +32,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     "Calle 80":"orange",
     "Centro":"pink"
   };
-  $scope.hour = 3;
+
   $scope.z = "pm";
   $scope.colorsArray = [];
   for (var k in $scope.colors) {
@@ -35,12 +41,17 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.zones.forEach(z => $scope.zonesVisibility[z] = true);
 
   $scope.data = {
-    "Calle 85":[10, 20, 15, 16, 30],
-    "Salitre plaza":[13, 18, 14, 17, 26],
-    "Parque 93":[16, 17, 8, 26, 20],
-    "Calle 80":[20, 12, 15, 22, 19],
-    "Centro":[9, 15, 16, 18, 17]
+    "Calle 85":[],
+    "Salitre plaza":[],
+    "Parque 93":[],
+    "Calle 80":[],
+    "Centro":[]
   };
+  for (var key in $scope.zonesVisibility) {
+    for (var i=0; i<8; i++) {
+      $scope.data[key].push(Math.random()*35);
+    }
+  }
   $scope.speedSeries = [];
   $scope.colorAsObject = function(key) {
     return {'color':$scope.colors[key]};
@@ -72,17 +83,23 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
 
   $scope.nextHour = function() {
     for (var z in $scope.data) {
-      //$scope.data[z].shift();
-      $scope.data[z].push(Math.random()*40);
+      for (var i=1; i < 8; i++) {
+        $scope.data[z][i-1] = $scope.data[z][i];
+      }
+      $scope.data[z][7] = Math.random()*35;
     }
-    //$scope.moments.shift();
+
+
     $scope.hour++;
     if ($scope.hour == 13) {
       $scope.hour = 1;
       $scope.z = $scope.z === "pm"?"am":"pm";
     }
-    $scope.moments.push(""+$scope.hour + " "+$scope.z);
-    $scope.refreshLinear();
+    // for (var i=1; i < 8; i++) {
+    //   $scope.moments[i-1] = $scope.moments[i];
+    // }
+    // $scope.moments[7] = ""+$scope.hour+" "+$scope.z;
+//    $scope.refreshLinear();
   };
 
   $scope.refreshLinear();
@@ -92,7 +109,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
  , 5000);
 
  $interval(() =>
-   $scope.counts = [Array.apply(null, Array(5)).map(v => Math.random()*100)]
+   $scope.counts = [Array.apply(null, Array(8)).map(v => Math.random()*100)]
  , 4000);
 
 $interval($scope.nextHour ,5000);
