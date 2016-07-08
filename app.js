@@ -8,8 +8,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    {"zoneId":"Calle 80", "data":{"count":3,"speed":13.5,"time":1466781876681}},
    {"zoneId":"Centro", "data":{"count":1,"speed": 9 ,"time":1466781876681}}
   ];
+  $scope.zones = $scope.initialData.map(d => d.zoneId);
 
-  $scope.labels = $scope.initialData.map(d => d.zoneId); //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   $scope.series = ['Count by zones'];
   $scope.counts = [$scope.initialData.map(d => d.data.count)];
   $scope.speeds = $scope.initialData.map(d => d.data.speed);
@@ -17,13 +17,21 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.zonesVisibility = {};
   $scope.expanded = null;
 
-  $scope.data = [
-    [10, 20, 15, 16, 30],
-    [13, 18, 14, 17, 26],
-    [16, 17, 8, 26, 20],
-    [20, 12, 15, 22, 19],
-    [9, 15, 16, 18, 17],
-  ];
+  $scope.data = {
+    "Calle 85":[10, 20, 15, 16, 30],
+    "Salitre plaza":[13, 18, 14, 17, 26],
+    "Parque 93":[16, 17, 8, 26, 20],
+    "Calle 80":[20, 12, 15, 22, 19],
+    "Centro":[9, 15, 16, 18, 17],
+  };
+  $scope.speedSeries = [];
+  $scope.refreshLinear = function() {
+    var filtered = [];
+    for (var key in $scope.zonesVisibility) {
+      filtered.push($scope.data[key]);
+    }
+    $scope.speedSeries = filtered;
+  }
 
   $scope.onClick = function (points, evt) {
      console.log(points, evt);
@@ -35,7 +43,15 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    };
    $scope.expand = function(component) {
      $scope.expanded = component;
-   }
+   };
+   $scope.toggleVisibility = function(component) {
+     if ($scope.zonesVisibility[component])
+       delete $scope.zonesVisibility[component];
+     else
+       $scope.zonesVisibility[component] = true;
+
+     $scope.refreshLinear();
+   };
 
   $interval(function() {
      $scope.labels.push("2013");

@@ -94,13 +94,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                          <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="moments"
-                          chart-series="labels" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+                          <canvas id="line" class="chart chart-line" chart-data="speedSeries" chart-labels="moments"
+                          chart-series="zones" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
                         </div>
                         <div class="col-lg-6">
-                          <div ng-repeat="l in labels">
+                          <div ng-repeat="l in zones">
                               <label>
-                              <input type="checkbox" name="name" ng-checked="zonesVisibility[l]" >
+                              <input type="checkbox" name="name" ng-checked="zonesVisibility[l]" ng-click="toggleVisibility(l)">
                               {{l}}</label>
                           </div>
                         </div>
@@ -115,14 +115,14 @@
             <div class="well">
               <h3>Count by zones</h3>
               <canvas id="bar" class="chart chart-bar"
-              chart-data="counts" chart-labels="labels" chart-series="labels" chart-options="options">
+              chart-data="counts" chart-labels="zones" chart-series="zones" chart-options="options">
             </canvas>
           </div>
           </div>
           <div class="col-lg-6" >
             <div class="well">
               <h3>Speed average</h3>
-              <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="labels" chart-options="options">
+              <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options">
               </canvas>
             </div>
 
