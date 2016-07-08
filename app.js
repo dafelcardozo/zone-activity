@@ -15,6 +15,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.speeds = $scope.initialData.map(d => d.data.speed);
   $scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
   $scope.zonesVisibility = {};
+  $scope.expanded = null;
 
   $scope.data = [
     [10, 20, 15, 16, 30],
@@ -32,6 +33,9 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     responsive: true,
     maintainAspectRatio: false,
    };
+   $scope.expand = function(component) {
+     $scope.expanded = component;
+   }
 
   $interval(function() {
      $scope.labels.push("2013");
