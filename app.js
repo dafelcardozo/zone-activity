@@ -26,6 +26,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     "Calle 80":"orange",
     "Centro":"pink"
   };
+  $scope.hour = 3;
+  $scope.z = "pm";
   $scope.colorsArray = [];
   for (var k in $scope.colors) {
     $scope.colorsArray.push($scope.colors[k]);
@@ -50,10 +52,6 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     }
     $scope.speedSeries = filtered;
   }
-
-  $scope.onClick = function (points, evt) {
-     console.log(points, evt);
-   };
    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
    $scope.options = {
     responsive: true,
@@ -69,13 +67,35 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
        $scope.zonesVisibility[component] = true;
      $scope.refreshLinear();
    };
-   $scope.refreshLinear();
-
-  $interval(function() {
-    $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0);
-  }, 5000);
 
 
+
+  $scope.nextHour = function() {
+    for (var z in $scope.data) {
+      //$scope.data[z].shift();
+      $scope.data[z].push(Math.random()*40);
+    }
+    //$scope.moments.shift();
+    $scope.hour++;
+    if ($scope.hour == 13) {
+      $scope.hour = 1;
+      $scope.z = $scope.z === "pm"?"am":"pm";
+    }
+    $scope.moments.push(""+$scope.hour + " "+$scope.z);
+    $scope.refreshLinear();
+  };
+
+  $scope.refreshLinear();
+
+ $interval(() =>
+   $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0)
+ , 5000);
+
+ $interval(() =>
+   $scope.counts = [Array.apply(null, Array(5)).map(v => Math.random()*100)]
+ , 4000);
+
+$interval($scope.nextHour ,5000);
 });
 
 $("#menu-toggle").click(function(e) {
