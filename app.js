@@ -14,6 +14,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.counts = [$scope.initialData.map(d => d.data.count)];
   $scope.speeds = $scope.initialData.map(d => d.data.speed);
   $scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
+  $scope.zonesVisibility = {};
 
   $scope.data = [
     [10, 20, 15, 16, 30],
@@ -28,13 +29,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    };
    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
    $scope.options = {
-     // Boolean - whether or not the chart should be responsive and resize when the browser does.
-
-responsive: true,
-
-// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-
-maintainAspectRatio: false,
+    responsive: true,
+    maintainAspectRatio: false,
    };
 
   $interval(function() {
@@ -47,3 +43,5 @@ $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
 });
+
+$('[data-toggle="tooltip"]').tooltip();
