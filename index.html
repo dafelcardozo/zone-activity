@@ -95,12 +95,13 @@
                     <div class="row">
                         <div class="col-lg-6">
                           <canvas id="line" class="chart chart-line" chart-data="speedSeries" chart-labels="moments"
-                          chart-series="zones" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+                          chart-series="zones" chart-options="options" chart-click="onClick"
+                          chart-colours="colorsArray">
                         </div>
                         <div class="col-lg-6">
-                          <div ng-repeat="l in zones">
-                              <label>
-                              <input type="checkbox" name="name" ng-checked="zonesVisibility[l]" ng-click="toggleVisibility(l)">
+                          <div ng-repeat="l in zones" ng-style="colorAsObject(l)">
+                              <label >
+                              <input type="checkbox" name="name" ng-checked="zonesVisibility[l]" ng-click="toggleVisibility(l)" >
                               {{l}}</label>
                           </div>
                         </div>

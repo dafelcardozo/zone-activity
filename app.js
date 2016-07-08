@@ -1,3 +1,6 @@
+// (function (ChartJsProvider) {
+//   ChartJsProvider.setOptions({ colors : [ '#FF0000', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+// });
 
 var app = angular.module('dataApp', ["chart.js"]);
 app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
@@ -16,15 +19,31 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.moments = ["10:00 am", "11:00 am", "12:00 pm", "1 pm", "2 pm"];
   $scope.zonesVisibility = {};
   $scope.expanded = null;
+  $scope.colors = {
+    "Calle 85":"red",
+    "Salitre plaza":"blue",
+    "Parque 93":"green",
+    "Calle 80":"orange",
+    "Centro":"pink"
+  };
+  $scope.colorsArray = [];
+  for (var k in $scope.colors) {
+    $scope.colorsArray.push($scope.colors[k]);
+  }
+  console.info("$scope.colorsArray: "+JSON.stringify($scope.colorsArray));
+
 
   $scope.data = {
     "Calle 85":[10, 20, 15, 16, 30],
     "Salitre plaza":[13, 18, 14, 17, 26],
     "Parque 93":[16, 17, 8, 26, 20],
     "Calle 80":[20, 12, 15, 22, 19],
-    "Centro":[9, 15, 16, 18, 17],
+    "Centro":[9, 15, 16, 18, 17]
   };
   $scope.speedSeries = [];
+  $scope.colorAsObject = function(key) {
+    return {'color':$scope.colors[key]};
+  }
   $scope.refreshLinear = function() {
     var filtered = [];
     for (var key in $scope.zonesVisibility) {
@@ -57,6 +76,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
      $scope.labels.push("2013");
      $scope.data[0].push(4);
    }, 60000);
+
+
 });
 
 $("#menu-toggle").click(function(e) {
