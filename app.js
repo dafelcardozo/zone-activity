@@ -30,8 +30,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   for (var k in $scope.colors) {
     $scope.colorsArray.push($scope.colors[k]);
   }
-  console.info("$scope.colorsArray: "+JSON.stringify($scope.colorsArray));
-
+  $scope.zones.forEach(z => $scope.zonesVisibility[z] = true);
 
   $scope.data = {
     "Calle 85":[10, 20, 15, 16, 30],
@@ -68,9 +67,9 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
        delete $scope.zonesVisibility[component];
      else
        $scope.zonesVisibility[component] = true;
-
      $scope.refreshLinear();
    };
+   $scope.refreshLinear();
 
   $interval(function() {
      $scope.labels.push("2013");
