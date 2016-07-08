@@ -11,13 +11,12 @@
     position: absolute;
     left: 50px;
   }
-  h3 {
 
+  .header span {
     font-size: 14px;
     font-weight: 600;
     line-height: 1.29;
     color: #7cb2ed;
-
   }
   .well span.hover {display:none}
   .well:hover span.hover {display:block}
@@ -118,7 +117,7 @@
               <div class="col-lg-8" >
                 <div class="well">
                  <div class="header">
-                  <h3>Count by zones</h3>
+                   <span>Count by zones</span>
                   </div>
                 <div class="container" >
                   <div class="row">
@@ -138,7 +137,9 @@
           </div>
           <div class="col-lg-4" >
             <div class="well">
-              <h3>Speed average</h3>
+               <div class="header">
+              <span>Speed average</span>
+            </div>
               <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options">
               </canvas>
             </div>
