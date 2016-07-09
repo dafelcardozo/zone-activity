@@ -1,13 +1,18 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-var finalhandler = require('finalhandler');
-var serveStatic = require('serve-static');
+app.set('port', (process.env.PORT || 5000));
 
-var serve = serveStatic("./");
+app.use(express.static(__dirname ));
 
-var server = http.createServer(function(req, res) {
-  var done = finalhandler(req, res);
-  serve(req, res, done);
+// views is directory for all template files
+//app.set('views', __dirname + '/views');
+//app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('index.html');
 });
 
-server.listen(5000);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
