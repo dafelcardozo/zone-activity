@@ -1,7 +1,7 @@
 # zone-activity
 My Frontend Developer test exam for Rokk3rlabs.
 
-Please check it out at this URL: http://ec2-54-164-66-21.compute-1.amazonaws.com/
+Please check it out at this URL http://ec2-54-164-66-21.compute-1.amazonaws.com/ or at this one: https://activitycharts.herokuapp.com/.
 
 Or if you prefer, you can clone this repository and than open the file index.html with your favorite browser.
 
