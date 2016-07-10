@@ -106,6 +106,14 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   };
 
   $scope.refreshLinear();
+  $scope.allColors = [
+    "#FFA500",
+    "#008000",
+    "#0000AA",
+    "#800080",
+    "#ff0000"
+  ];
+
 
  $interval(() =>
    $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0)

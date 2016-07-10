@@ -21,6 +21,12 @@
   }
   .well span.hover {display:none}
   .well:hover span.hover {display:block}
+  .well {
+    background-color: white;
+  }
+  #page-content-wrapper {
+    background-color: #f5f5fa
+  }
   </style>
 </head>
 <body>
@@ -141,7 +147,7 @@
                <div class="header">
               <span>Speed average</span>
             </div>
-              <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options">
+              <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options" chart-colors="allColors">
               </canvas>
             </div>
           </div>
