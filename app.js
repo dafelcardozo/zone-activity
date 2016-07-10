@@ -77,7 +77,8 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    };
    $scope.linearOptions = {
     lineTension:0,
-    fill:false
+    fill:false,
+    tension:0
    };
    $scope.datasetOverride = [$scope.linearOptions, $scope.linearOptions, $scope.linearOptions, $scope.linearOptions, $scope.linearOptions];
    $scope.expand = function(component) {
