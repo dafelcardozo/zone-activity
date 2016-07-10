@@ -1,0 +1,29 @@
+{
+  "name": "zone-activity",
+  "description": "My frontend developer test for Rock3rlabs",
+  "main": "app.js",
+  "authors": [
+    "Felipe Cardozo"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Frontend",
+    "developer",
+    "test",
+    "Rock3labs"
+  ],
+  "homepage": "https://github.com/dafelcardozo/zone-activity",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.x",
+    "angular-chart.js": "1.0.0-beta1",
+    "bootstrap": "^3.3.6",
+    "Chart.js": "2.0.0"
+  }
+}

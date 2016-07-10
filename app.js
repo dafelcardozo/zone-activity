@@ -1,6 +1,3 @@
-// (function (ChartJsProvider) {
-//   ChartJsProvider.setOptions({ colors : [ '#FF0000', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
-// });
 
 var app = angular.module('dataApp', ["chart.js"]);
 app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
@@ -26,18 +23,18 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.zonesVisibility = {};
   $scope.expanded = null;
   $scope.colors = {
-    "Calle 85":"red",
-    "Salitre plaza":"blue",
-    "Parque 93":"green",
-    "Calle 80":"orange",
-    "Centro":"pink"
+    "Calle 85":"#ff0000",
+    "Salitre plaza":"#00ff00",
+    "Parque 93":"#0000ff",
+    "Calle 80":"#00ffff",
+    "Centro":"#ff00ff"
   };
 
   $scope.z = "pm";
   $scope.colorsArray = [];
-  for (var k in $scope.colors) {
-    $scope.colorsArray.push($scope.colors[k]);
-  }
+
+
+
   $scope.zones.forEach(z => $scope.zonesVisibility[z] = true);
 
   $scope.data = {
@@ -55,7 +52,16 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.speedSeries = [];
   $scope.colorAsObject = function(key) {
     return {'color':$scope.colors[key]};
-  }
+  };
+  $scope.updateColors = function() {
+    var colors = [];
+    for (var k in $scope.zonesVisibility) {
+      colors.push($scope.colors[k]);
+    }
+    $scope.colorsArray = colors;
+  };
+  //$scope.updateColors();
+
   $scope.refreshLinear = function() {
     var filtered = [];
     for (var key in $scope.zonesVisibility) {
@@ -67,6 +73,19 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
    $scope.options = {
     responsive: true,
     maintainAspectRatio: false,
+        // title: {
+        //     display: true,
+        //     text: 'Custom Chart Title'
+        // },
+        legend: {
+          display: true,
+          position:'bottom'
+          // labels: {
+          //     fontColor: 'rgb(255, 99, 132)'
+          // }
+
+      }
+
    };
    $scope.expand = function(component) {
      $scope.expanded = component;
@@ -77,6 +96,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
      else
        $scope.zonesVisibility[component] = true;
      $scope.refreshLinear();
+     $scope.updateColors();
    };
 
 
@@ -86,7 +106,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
       for (var i=1; i < 8; i++) {
         $scope.data[z][i-1] = $scope.data[z][i];
       }
-      $scope.data[z][7] = Math.random()*35;
+      $scope.data[z][7] = Math.random()*35 >>> 0;
     }
 
 
@@ -95,11 +115,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
       $scope.hour = 1;
       $scope.z = $scope.z === "pm"?"am":"pm";
     }
-    // for (var i=1; i < 8; i++) {
-    //   $scope.moments[i-1] = $scope.moments[i];
-    // }
-    // $scope.moments[7] = ""+$scope.hour+" "+$scope.z;
-//    $scope.refreshLinear();
+
   };
 
   $scope.refreshLinear();
@@ -109,7 +125,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
  , 5000);
 
  $interval(() =>
-   $scope.counts = [Array.apply(null, Array(8)).map(v => Math.random()*100)]
+   $scope.counts = [Array.apply(null, Array(8)).map(v => Math.random()*100 >>> 0)]
  , 4000);
 
 $interval($scope.nextHour ,5000);

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Thank you for seeing this demo !</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="bower_components/angular/angular-csp.css" media="screen" title="no title" charset="utf-8">
+  <!-- <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" media="screen" title="no title" charset="utf-8"> -->
   <link rel="stylesheet" href="bower_components/sidebar/simple-sidebar.css" media="screen" title="no title" charset="utf-8">
   <style media="screen">
   li span {
@@ -98,7 +99,7 @@
                     <div class="row">
                       <div class="col-lg-6">
                         <canvas id="line" class="chart chart-line" chart-data="speedSeries" chart-labels="moments"
-                        chart-series="zones" chart-options="options" chart-colours="colorsArray">
+                        chart-series="zones" chart-colors="colorsArray">
                       </div>
                       <div >
                         <div ng-repeat="l in zones" ng-style="colorAsObject(l)">
@@ -123,7 +124,7 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <canvas id="bar" class="chart chart-bar"
-                      chart-data="counts" chart-labels="zones" chart-series="zones" chart-options="options">
+                      chart-data="counts" chart-labels="zones" chart-series="zones" >
                       </canvas>
                     </div>
                     <div class="col-lg-2" style="border-left:solid 0.5px blue">
@@ -150,7 +151,7 @@
   </div>
   <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
   <script src="bower_components/angular/angular.js" charset="utf-8"></script>
-  <script src="bower_components/Chart.js/Chart.js" charset="utf-8"></script>
+  <script src="bower_components/Chart.js/dist/Chart.js" charset="utf-8"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
   <script src="bower_components/angular-chart.js/angular-chart.js" charset="utf-8"></script>
   <script src="app.js" charset="utf-8"></script>
