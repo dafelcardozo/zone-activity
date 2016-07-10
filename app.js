@@ -23,18 +23,15 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.zonesVisibility = {};
   $scope.expanded = null;
   $scope.colors = {
-    "Calle 85":"#ff0000",
-    "Salitre plaza":"#00ff00",
-    "Parque 93":"#0000ff",
-    "Calle 80":"#00ffff",
-    "Centro":"#ff00ff"
+    "Calle 85":"#FFA500",
+    "Salitre plaza":"#008000",
+    "Parque 93":"#0000AA",
+    "Calle 80":"#800080",
+    "Centro":"#ff0000"
   };
 
   $scope.z = "pm";
   $scope.colorsArray = [];
-
-
-
   $scope.zones.forEach(z => $scope.zonesVisibility[z] = true);
 
   $scope.data = {
@@ -46,7 +43,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   };
   for (var key in $scope.zonesVisibility) {
     for (var i=0; i<8; i++) {
-      $scope.data[key].push(Math.random()*35);
+      $scope.data[key].push(Math.random()*35 >>> 0);
     }
   }
   $scope.speedSeries = [];
@@ -60,7 +57,6 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     }
     $scope.colorsArray = colors;
   };
-  //$scope.updateColors();
 
   $scope.refreshLinear = function() {
     var filtered = [];
@@ -69,24 +65,21 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     }
     $scope.speedSeries = filtered;
   }
-   $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+
+
    $scope.options = {
-    responsive: true,
-    maintainAspectRatio: false,
-        // title: {
-        //     display: true,
-        //     text: 'Custom Chart Title'
-        // },
-        legend: {
-          display: true,
-          position:'bottom'
-          // labels: {
-          //     fontColor: 'rgb(255, 99, 132)'
-          // }
-
-      }
-
+    // responsive: true,
+    // maintainAspectRatio: false,
+    legend: {
+      display: true,
+      position:'bottom'
+    }
    };
+   $scope.linearOptions = {
+    lineTension:0,
+    fill:false
+   };
+   $scope.datasetOverride = [$scope.linearOptions, $scope.linearOptions, $scope.linearOptions, $scope.linearOptions, $scope.linearOptions];
    $scope.expand = function(component) {
      $scope.expanded = component;
    };
@@ -98,9 +91,6 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
      $scope.refreshLinear();
      $scope.updateColors();
    };
-
-
-
   $scope.nextHour = function() {
     for (var z in $scope.data) {
       for (var i=1; i < 8; i++) {
@@ -108,14 +98,11 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
       }
       $scope.data[z][7] = Math.random()*35 >>> 0;
     }
-
-
     $scope.hour++;
     if ($scope.hour == 13) {
       $scope.hour = 1;
       $scope.z = $scope.z === "pm"?"am":"pm";
     }
-
   };
 
   $scope.refreshLinear();

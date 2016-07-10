@@ -98,8 +98,8 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-lg-6">
-                        <canvas id="line" class="chart chart-line" chart-data="speedSeries" chart-labels="moments"
-                        chart-series="zones" chart-colors="colorsArray">
+                        <canvas id="line" class="chart chart-line" chart-dataset-override="datasetOverride" chart-data="speedSeries" chart-labels="moments"
+                        chart-series="zones" chart-colors="colorsArray" >
                       </div>
                       <div >
                         <div ng-repeat="l in zones" ng-style="colorAsObject(l)">
