@@ -1,0 +1,19 @@
+li span {
+  position: absolute;
+  left: 50px;
+}
+
+.header span {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  color: #7cb2ed;
+}
+.well span.hover {display:none}
+.well:hover span.hover {display:block}
+.well {
+  background-color: white;
+}
+#page-content-wrapper {
+  background-color: #f5f5fa
+}

@@ -1,3 +1,4 @@
+/*jshint esnext: true */
 
 var app = angular.module('dataApp', ["chart.js"]);
 app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
@@ -15,8 +16,10 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
   $scope.speeds = $scope.initialData.map(d => d.data.speed);
   $scope.moments = [];
   $scope.hour = 11;
+  {
   for (var i=7; i>1; i--){
     $scope.moments.push("-"+(i)+" mn");
+  }
   }
   $scope.moments.push("-1 mn ago");
   $scope.moments.push("right now");
@@ -42,7 +45,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     "Centro":[]
   };
   for (var key in $scope.zonesVisibility) {
-    for (var i=0; i<8; i++) {
+    for (var j=0; j<8; j++) {
       $scope.data[key].push(Math.random()*35 >>> 0);
     }
   }
@@ -64,9 +67,7 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
       filtered.push($scope.data[key]);
     }
     $scope.speedSeries = filtered;
-  }
-
-
+  };
    $scope.options = {
     // responsive: true,
     // maintainAspectRatio: false,
@@ -114,17 +115,9 @@ app.controller('dataCtrl', function ($scope,  $timeout,  $interval) {
     "#800080",
     "#ff0000"
   ];
-
-
- $interval(() =>
-   $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0)
- , 5000);
-
- $interval(() =>
-   $scope.counts = [Array.apply(null, Array(8)).map(v => Math.random()*100 >>> 0)]
- , 4000);
-
-$interval($scope.nextHour ,5000);
+ $interval(() => $scope.speeds = $scope.speeds.map(v => Math.random()*90+10  >>> 0), 5000);
+ $interval(() =>$scope.counts = [Array.apply(null, Array(8)).map(v => Math.random()*100 >>> 0)], 4000);
+ $interval($scope.nextHour ,5000);
 });
 
 $("#menu-toggle").click(function(e) {
