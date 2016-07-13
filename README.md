@@ -1,9 +1,8 @@
 # zone-activity
-My Frontend Developer test exam for Rokk3rlabs.
 
-Please check it out at this URL http://ec2-54-164-66-21.compute-1.amazonaws.com/ or at this one: https://activitycharts.herokuapp.com/.
+This is a sample tech evaluation repo for a few of the technologies I've been working on in the last few months.
 
-Or if you prefer, you can clone this repository and than open the file index.html with your favorite browser.
+You can clone this repository and than open the file index.html with your favorite browser.
 
 Those are the technologies which I used for building this project:
 
@@ -18,5 +17,3 @@ Those are the technologies which I used for building this project:
 - HTML 5 and CSS 3.
 
 Thanks and credits to all of those tools !
-
-And a very special thanks to Rokk3rlabs for considering me.

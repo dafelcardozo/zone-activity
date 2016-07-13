@@ -14,7 +14,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 1.29;
-    color: #7cb2ed;
+    /*color: #7cb2ed;*/
   }
   .well span.hover {display:none}
   .well:hover span.hover {display:block}
@@ -83,20 +83,21 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="well">
+
+                  <span style="float:right" class="hover">
+
+                    <a href="#" data-toggle="tooltip" title="Expand this component" ng-click="expand('Speed zones')" ng-hide="expanded">
+                      <span class="glyphicon glyphicon-fullscreen"></span>
+                    </a>
+                    <a href="#" data-toggle="tooltip" title="Expand this component" ng-click="expand(null)" ng-show="expanded">
+                      <span class="glyphicon glyphicon-resize-small"></span>
+                    </a>
+                    <a href="#" data-toggle="tooltip" title="This is an info button that shows you... some info about the current widget">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                    </a>
+                  </span>
                   <div class="header">
                     <span>Speed zones</span>
-                    <span style="float:right" class="hover">
-
-                      <a href="#" data-toggle="tooltip" title="Expand this component" ng-click="expand('Speed zones')" ng-hide="expanded">
-                        <span class="glyphicon glyphicon-fullscreen"></span>
-                      </a>
-                      <a href="#" data-toggle="tooltip" title="Expand this component" ng-click="expand(null)" ng-show="expanded">
-                        <span class="glyphicon glyphicon-resize-small"></span>
-                      </a>
-                      <a href="#" data-toggle="tooltip" title="This is an info button that shows you... some info about the current widget">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                      </a>
-                    </span>
                   </div>
                   <div class="container">
                     <div class="row">
