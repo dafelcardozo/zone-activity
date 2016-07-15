@@ -120,14 +120,14 @@
             <div class="row" ng-hide="expanded">
               <div class="col-lg-8" >
                 <div class="well">
-                 <div class="header">
-                   <span>Count by zones</span>
+                  <div class="header">
+                    <span>Count by zones</span>
                   </div>
-                <div class="container" >
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <canvas id="bar" class="chart chart-bar"
-                      chart-data="counts" chart-labels="zones" chart-series="zones" >
+                  <div class="container" >
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <canvas id="bar" class="chart chart-bar"
+                        chart-data="counts" chart-labels="zones" chart-series="zones" >
                       </canvas>
                     </div>
                     <div class="col-lg-2" style="border-left:solid 0.5px blue">
@@ -137,22 +137,22 @@
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-4" >
-            <div class="well">
-               <div class="header">
-              <span>Speed average</span>
-            </div>
-              <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options" chart-colors="allColors">
-              </canvas>
+            <div class="col-lg-4" >
+              <div class="well">
+                <div class="header">
+                  <span>Speed average</span>
+                </div>
+                <canvas id="doughnut" class="chart chart-doughnut" chart-data="speeds" chart-labels="zones" chart-options="options" chart-colors="allColors">
+                </canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src="dist/all.min.js" charset="utf-8"></script>
-  <script src="app.js" charset="utf-8"></script>
-</body>
-</html>
+    <script src="dist/all.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+  </html>

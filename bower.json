@@ -1,6 +1,6 @@
 {
   "name": "zone-activity",
-  "description": "My frontend developer test for Rock3rlabs",
+  "description": "A technology stack evaluation test",
   "main": "app.js",
   "authors": [
     "Felipe Cardozo"
@@ -10,7 +10,14 @@
     "Frontend",
     "developer",
     "test",
-    "Rock3labs"
+    "Javascript",
+    "ES 6",
+    "Angular JS",
+    "Chart.js",
+    "Gulp",
+    "Bower",
+    "angular-chart.js"
+
   ],
   "homepage": "https://github.com/dafelcardozo/zone-activity",
   "ignore": [
